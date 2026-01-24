@@ -1,0 +1,21 @@
+package list
+
+type ListNode struct {
+	Val int
+	Next *ListNode
+ }
+
+// NOTE: 快慢指针，fast走两步，slow走一步，fast走到终点的时候，slow就在中点
+// 假设长度为n
+// fast 速度=2， slow 速度=1， fast走到终点需要的时间为 n/2 
+// slow 走过的路程 = 1 * (n / 2) = n/2 就是终点
+func middleNode(head *ListNode) *ListNode {
+    fast, slow := head, head 
+
+	for fast != nil && fast.Next != nil {
+		fast = fast.Next.Next
+		slow = slow.Next
+	}
+
+	return slow 
+}
